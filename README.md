@@ -1,4 +1,4 @@
-# Lunaroclient
+# Lunar client
 
 Modern Lunar Client download website with animated UI.
 
