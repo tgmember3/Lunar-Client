@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lunar Client Downloads</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background: linear-gradient(-45deg, #000000, #0f172a, #111827, #000000);
+      background-size: 400% 400%;
+      animation: bgMove 15s ease infinite;
+      overflow-x: hidden;
+    }
+
+    @keyframes bgMove {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .title-glow {
+      text-shadow:
+        0 0 10px white,
+        0 0 20px white,
+        0 0 40px #60a5fa;
+      animation: pulseGlow 3s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        text-shadow:
+          0 0 10px white,
+          0 0 20px white,
+          0 0 40px #60a5fa;
+      }
+      50% {
+        text-shadow:
+          0 0 20px white,
+          0 0 40px white,
+          0 0 60px #38bdf8;
+      }
+      100% {
+        text-shadow:
+          0 0 10px white,
+          0 0 20px white,
+          0 0 40px #60a5fa;
+      }
+    }
+
+    .card-animation {
+      animation: fadeUp 0.8s ease forwards;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .download-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.3);
+      transition: 0.6s;
+    }
+
+    .download-btn:hover::before {
+      left: 100%;
+    }
+
+    .floating {
+      animation: floating 4s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+  </style>
+</head>
+
+<body class="text-white font-sans px-6 py-16">
+
+  <div class="max-w-7xl mx-auto">
+
+    <h1 class="text-5xl md:text-7xl font-extrabold text-center mb-4 title-glow floating">
+      Lunar Client Downloads
+    </h1>
+
+    <p class="text-center text-gray-300 mb-14 text-lg">
+      Download your favorite Lunar Client version.
+    </p>
+
+    <div id="versions"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    </div>
+
+  </div>
+
+  <script>
+    const versions = [
+      ["Lunar Client v3.4.9", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.4.9.exe"],
+      ["Lunar Client v3.4.8", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.4.8.exe"],
+      ["Lunar Client v3.4.7", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.4.7.exe"],
+      ["Lunar Client v3.4.6", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.4.6.exe"],
+      ["Lunar Client v3.4.5", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.4.5.exe"],
+      ["Lunar Client v3.4.4", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.4.4.exe"],
+      ["Lunar Client v3.4.3", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.4.3.exe"],
+      ["Lunar Client v3.4.2", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.4.2.exe"],
+      ["Lunar Client v3.4.1", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.4.1.exe"],
+      ["Lunar Client v3.4.0", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.4.0.exe"],
+
+      ["Lunar Client v3.3.11", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.3.11.exe"],
+      ["Lunar Client v3.3.4", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.3.4.exe"],
+      ["Lunar Client v3.3.3", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.3.3.exe"],
+      ["Lunar Client v3.3.2", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.3.2.exe"],
+      ["Lunar Client v3.3.1", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.3.1.exe"],
+
+      ["Lunar Client v3.2.29", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.2.29.exe"],
+      ["Lunar Client v3.2.28", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.2.28.exe"],
+      ["Lunar Client v3.2.27", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.2.27.exe"],
+      ["Lunar Client v3.2.26", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.2.26.exe"],
+      ["Lunar Client v3.2.25", "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v3.2.25.exe"]
+    ];
+
+    const container = document.getElementById("versions");
+
+    versions.forEach((version, index) => {
+      container.innerHTML += `
+        <div
+          class="bg-zinc-900/90 backdrop-blur-md rounded-3xl p-8 border border-zinc-800 hover:border-cyan-400 hover:scale-105 transition duration-300 shadow-2xl shadow-cyan-500/10 card-animation"
+          style="animation-delay:${index * 0.08}s">
+
+          <h2 class="text-2xl font-bold mb-6">
+            ${version[0]}
+          </h2>
+
+          <a href="${version[1]}" download
+             class="download-btn block text-center bg-white text-black py-3 rounded-xl font-semibold hover:bg-cyan-300 transition duration-300">
+             Download
+          </a>
+
+        </div>
+      `;
+    });
+  </script>
+
+</body>
+</html>
